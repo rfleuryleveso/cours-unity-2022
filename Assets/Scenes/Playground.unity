@@ -226,11 +226,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec32be3414b3fd459e0558901a563b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basePosition: {x: 0, y: 0, z: 0}
   horizontalSpeed: 3
   prefabCount: 500
   distance: 20
   target: {fileID: 754218698}
+  _prefabCountCheck: 500
   prefabAInstantier: {fileID: 2066869721}
 --- !u!4 &745428980
 Transform:
