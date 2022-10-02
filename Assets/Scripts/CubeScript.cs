@@ -12,15 +12,40 @@ public class CubeScript : MonoBehaviour
     [SerializeField] private float distance = 20;
     [SerializeField] private GameObject target;
 
+    [SerializeField]
+    [HideInInspector]
+    private float _prefabCountCheck = 20;
+    
     [SerializeField] private GameObject prefabAInstantier;
 
     private List<GameObject> cubes;
 
     void Start()
     {
+        this._prefabCountCheck = this.prefabCount;
+        this.cubes = new List<GameObject>();
+        this.SpawnAllCubes();
+    }
+
+    void SpawnAllCubes()
+    {
         for (int i = 0; i < prefabCount; i++)
         {
             this.cubes.Add(Instantiate(prefabAInstantier));
+        }
+    }
+
+    private void OnValidate()
+    {
+        if (Application.isPlaying)
+        {
+            if (this._prefabCountCheck != this.prefabCount)
+            {
+                this.cubes.ForEach(cube => Destroy(cube));
+                this.cubes.Clear();
+                this._prefabCountCheck = prefabCount;
+                this.SpawnAllCubes();
+            }
         }
     }
 
